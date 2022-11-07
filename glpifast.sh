@@ -70,7 +70,7 @@ wget -O- https://github.com/glpi-project/glpi/releases/download/$glpiversion/glp
 echo "Passo 7: Ajustar permissões de arquivos"
 sudo chown www-data. /var/www/html/glpi -Rf
 sudo find /var/www/html/glpi -type d -exec chmod 755 {} \;
-find /var/www/html/glpi -type f -exec chmod 644 {} \;
+sudo find /var/www/html/glpi -type f -exec chmod 644 {} \;
 
 echo "Passo 8: Instalar e iniciar MariaDB"
 sudo apt install -y mariadb-server
@@ -145,6 +145,8 @@ EOF
 sudo chmod u+x /etc/nftables.rules
 sudo nft flush ruleset
 sudo nft -f /etc/nftables.rules
+sudo systemctl reload apache2
+sudo a2enconf glpi.conf
 
 echo "Parabéns. A instalação foi finalizada------------------------------------------------"
 echo "-------------------------------------------------------------------------------------"
