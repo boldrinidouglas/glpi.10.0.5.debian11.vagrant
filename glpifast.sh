@@ -143,7 +143,6 @@ table ip6 firewall {
 }
 EOF
 sudo chmod u+x /etc/nftables.rules
-sudo nft list ruleset > /etc/nftables.rules
 sudo nft flush ruleset
 sudo nft -f /etc/nftables.rules
 
